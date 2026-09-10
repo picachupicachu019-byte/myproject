@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17352f">
+  <meta name="description" content="Discover and share events in your neighborhood with Event Nest.">
+  <link rel="manifest" href="ooroli/manifest.webmanifest">
+  <title>Event Nest | Our Community, Our Voice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ooroli/style.css">
+  <link rel="stylesheet" href="ooroli/live-search.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark">E</span><span>Event Nest</span></a>
+    <nav class="nav-links"><a class="active" href="#home">Home</a><a href="#events">Events</a><a href="#requests">Help</a></nav>
+    <div class="header-actions"><button class="install-button" id="installButton" hidden>Install app</button><button class="profile-button" id="profileButton"><span class="avatar">A</span><span id="profileName">Log in</span><span>⌄</span></button></div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy"><p class="eyebrow"><span></span> Our community, our voice</p><h1>Good news<br>is <em>closer</em> than you think.</h1><p class="hero-text">Discover important events, help requests, and announcements happening around your neighborhood, all in one place.</p><div class="hero-actions"><a class="primary-button" href="#events">See today's updates <span>↗</span></a><button class="text-button" id="shareButton">Share <span>⤴</span></button></div></div>
+      <div class="hero-art"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="house house-one">⌂</div><div class="house house-two">⌂</div><div class="person person-one"></div><div class="person person-two"></div><div class="art-label">Connected with<br><strong>12,840</strong> neighbors</div></div>
+    </section>
+    <section class="content-section" id="events"><div class="section-heading"><div><p class="eyebrow">Daily community updates</p><h2>News, companies, and events</h2></div><button class="filter-button" id="filterButton">All <span>⌄</span></button></div><form class="event-search" id="eventSearch"><input name="q" placeholder="Search news, company, or event"><input name="city" placeholder="City, for example Chennai"><button class="primary-button" type="submit">Search updates <span>⌕</span></button></form>
+      <div class="event-grid" id="eventGrid">
+        <article class="event-card featured" data-type="Event"><div class="card-date"><strong>12</strong><span>SEP</span></div><div><span class="tag green">Environment</span><h3>Community lake clean-up</h3><p>Saturday · 7:00 AM · Big Lake</p><button class="card-link" data-event="Community lake clean-up">I will join <span>→</span></button></div></article>
+        <article class="event-card" data-type="Announcement"><div class="card-icon orange">☀</div><div><span class="tag orange-tag">Announcement</span><h3>Power outage update</h3><p>Tomorrow, September 9 · 9:00 AM to 12:00 PM</p><button class="card-link" data-event="Power outage update">View details <span>→</span></button></div></article>
+        <article class="event-card" data-type="Help"><div class="card-icon blue">+</div><div><span class="tag blue-tag">Help needed</span><h3>Support for senior home</h3><p>Medicine and food supplies are needed</p><button class="card-link" data-event="Support for senior home">I want to help <span>→</span></button></div></article>
+      </div>
+    </section>
+    <section class="lower-section" id="requests"><div class="notice-panel"><div class="notice-icon">✦</div><div><p class="eyebrow">A small reminder</p><h2>Positive change<br>starts with you.</h2><p>Share a helpful update from your neighborhood. It may make a real difference to someone.</p><button class="outline-button" id="openModal">Add a new post <span>＋</span></button></div></div><div class="stats-panel"><p class="eyebrow">This month's journey</p><div class="stat-row"><strong>486</strong><span>new posts</span></div><div class="progress"><span></span></div><div class="stat-footer"><span>Compared to last month</span><strong>+24%</strong></div><div class="mini-people"><span>A</span><span>K</span><span>M</span><span>+</span><small>2,100 more people have contributed</small></div></div></section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog class="modal" id="authModal"><form method="dialog" id="authForm"><button class="close-button" value="cancel">×</button><p class="eyebrow">Join your neighborhood</p><h2 id="authTitle">Log in</h2><label id="nameField" hidden>Name<input name="name" placeholder="Your name"></label><label>Email<input name="email" type="email" required placeholder="you@example.com"></label><label>Password<input name="password" type="password" required minlength="6" placeholder="At least 6 characters"></label><button class="primary-button" type="submit" id="authSubmit">Log in <span>↗</span></button><button class="switch-auth" id="switchAuth" type="button">Create a new account</button></form></dialog>
+  <dialog class="modal" id="detailsModal"><form method="dialog"><button class="close-button" value="cancel">×</button><p class="eyebrow" id="detailsType">Community update</p><h2 id="detailsTitle">Details</h2><p id="detailsDescription"></p><small id="detailsAuthor"></small></form></dialog>
+  <dialog class="modal" id="postModal"><form method="dialog" id="postForm"><button class="close-button" value="cancel">×</button><p class="eyebrow">Your voice matters</p><h2>New daily update</h2><label>Title<input name="title" required placeholder="What would you like to share?"></label><label>Type<select name="type"><option>News</option><option>Company</option><option>Event</option><option>Announcement</option><option>Help</option></select></label><label>Place<input name="place" required placeholder="Event location"></label><label>Date<input name="eventDate" type="date"></label><label>Time<input name="eventTime" type="time"></label><label>Short description<textarea name="description" required placeholder="Write a few lines..."></textarea></label><button class="primary-button" type="submit">Publish update <span>↗</span></button></form></dialog>
+  <script src="ooroli/app.js"></script>
+  <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('ooroli/service-worker.js'));</script>
+</body>
+</html>
